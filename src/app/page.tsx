@@ -1,79 +1,133 @@
-'use client'
+const links = [
+  {
+    href: 'https://bsky.app/profile/jamiegonzalez.bsky.social',
+    label: 'Bluesky',
+    note: 'Short posts, links, and whatever New York is doing that day.',
+  },
+  {
+    href: 'https://github.com/jamiegonzalez929',
+    label: 'GitHub',
+    note: 'Code experiments, side projects, and the occasional useful tool.',
+  },
+  {
+    href: 'https://jamiegonzalez306874.substack.com',
+    label: 'Substack',
+    note: 'Longer writing when a post wants room to breathe.',
+  },
+  {
+    href: 'https://jamiegonzalez2.wordpress.com',
+    label: 'WordPress',
+    note: 'Older posts, notes, and an archive of writing on the web.',
+  },
+  {
+    href: 'https://jamiegonzalez929.github.io/reporacer/',
+    label: 'RepoRacer',
+    note: 'A browser game built from the same impulse that starts most side projects: why not?',
+  },
+]
 
-import './globals.css'
+const sections = [
+  {
+    eyebrow: 'Writing',
+    title: 'Essays, notes, and city obsessions.',
+    body:
+      'I write about New York, the built environment, politics, and the everyday details that make a place feel lived in.',
+  },
+  {
+    eyebrow: 'Code',
+    title: 'Small web projects with actual personality.',
+    body:
+      'I like making things that are useful, a little strange, or both. Usually that means lightweight sites, experiments, and whatever seems worth prototyping.',
+  },
+  {
+    eyebrow: 'Urbanism',
+    title: 'Transit, housing, neighborhoods, and street-level reality.',
+    body:
+      'Most of my favorite rabbit holes start with a map, a zoning argument, or a walk through Brooklyn that turns into twenty browser tabs.',
+  },
+]
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8 bg-black text-white">
-      <div className="max-w-2xl w-full space-y-8">
-        {/* Header */}
-        <header className="text-center space-y-4">
-          <h1 className="text-6xl font-bold tracking-tight">Jamie Gonzalez</h1>
-          <p className="text-xl text-gray-400">NYC-based writer. Brooklyn resident.</p>
-          <p className="text-lg text-gray-500">Books. Code. Urban planning nerdery.</p>
-        </header>
+    <main className="page-shell">
+      <div className="page-glow page-glow-top" />
+      <div className="page-glow page-glow-bottom" />
 
-        {/* Links */}
-        <nav className="flex flex-col gap-4 items-center">
-          <a 
-            href="https://bsky.app/profile/jamiegonzalez.bsky.social"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-blue-400 transition-colors"
-          >
-            Bluesky
-          </a>
-          <a 
-            href="https://github.com/jamiegonzalez929"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-gray-300 transition-colors"
-          >
-            GitHub
-          </a>
-          <a 
-            href="https://jamiegonzalez306874.substack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-yellow-400 transition-colors"
-          >
-            Substack
-          </a>
-          <a 
-            href="https://jamiegonzalez2.wordpress.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-blue-500 transition-colors"
-          >
-            WordPress
-          </a>
-          <a 
-            href="https://jamiegonzalez929.github.io/reporacer/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-green-400 transition-colors"
-          >
-            RepoRacer (project)
-          </a>
+      <section className="hero">
+        <p className="eyebrow">Brooklyn, New York</p>
+        <div className="hero-copy">
+          <h1>Jamie Gonzalez</h1>
+          <p className="hero-lede">
+            Writer, coder, and urbanism nerd building a small corner of the internet that
+            feels like a person actually lives here.
+          </p>
+          <p className="hero-text">
+            This site is a home base for my writing, side projects, and ongoing fascination
+            with how cities work and how people move through them.
+          </p>
+        </div>
+
+        <div className="hero-meta">
+          <div className="meta-card">
+            <span>Based in</span>
+            <strong>Brooklyn / NYC</strong>
+          </div>
+          <div className="meta-card">
+            <span>Interested in</span>
+            <strong>Books, code, transit, neighborhoods</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-grid" aria-label="Site sections">
+        {sections.map((section) => (
+          <article key={section.eyebrow} className="info-card">
+            <p className="eyebrow">{section.eyebrow}</p>
+            <h2>{section.title}</h2>
+            <p>{section.body}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="links-section">
+        <div className="section-heading">
+          <p className="eyebrow">Elsewhere</p>
+          <h2>Links worth clicking</h2>
+          <p>
+            The best way to get a sense of what I&apos;m making or thinking about is to follow
+            the trail.
+          </p>
+        </div>
+
+        <nav className="links-grid" aria-label="External links">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-card"
+            >
+              <span className="link-label">{link.label}</span>
+              <span className="link-note">{link.note}</span>
+            </a>
+          ))}
         </nav>
+      </section>
 
-        {/* About */}
-        <section className="pt-8 border-t border-gray-800">
-          <h2 className="text-2xl font-semibold mb-4">About</h2>
-          <p className="text-gray-400 leading-relaxed">
-            Observed the city one slice at a time. Building things when the coffee holds out. 
-            Interested in urban planning, local politics, and the strange things that make NYC home.
-          </p>
-        </section>
-
-        {/* Contact */}
-        <section className="pt-8 border-t border-gray-800">
-          <h2 className="text-2xl font-semibold mb-4">Contact</h2>
-          <p className="text-gray-400">
-            Find me on the platforms above, or email me at jamiegonzalez929@proton.me
-          </p>
-        </section>
-      </div>
+      <section className="footer-panel">
+        <div>
+          <p className="eyebrow">Contact</p>
+          <h2>Say hello</h2>
+        </div>
+        <p>
+          Reach me at{' '}
+          <a href="mailto:jamiegonzalez929@proton.me" className="inline-link">
+            jamiegonzalez929@proton.me
+          </a>{' '}
+          or find me through the links above.
+        </p>
+      </section>
     </main>
   )
 }
